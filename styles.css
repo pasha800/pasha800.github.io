@@ -622,35 +622,28 @@ h1 {
 .skill-meter {
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: 0.65rem 1rem;
+  gap: 0.75rem 1rem;
   align-items: center;
-}
-
-.skill-meter span {
-  grid-column: 1 / -1;
-  position: relative;
-  height: 0.65rem;
-  overflow: hidden;
-  border-radius: 999px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
   background: var(--surface-strong);
-}
-
-.skill-meter span::after {
-  content: "";
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: var(--level);
-  background: linear-gradient(90deg, var(--teal), var(--green), var(--amber));
+  padding: 0.95rem;
 }
 
 .skill-meter strong {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
 }
 
 .skill-meter em {
+  justify-self: end;
+  border: 1px solid rgba(0, 127, 120, 0.22);
+  border-radius: 999px;
+  background: rgba(0, 127, 120, 0.08);
   color: var(--teal);
   font-style: normal;
   font-weight: 900;
+  padding: 0.35rem 0.65rem;
+  white-space: nowrap;
 }
 
 .skill-cloud {
@@ -710,21 +703,81 @@ h1 {
 }
 
 .project-card {
-  min-height: 14.5rem;
+  min-height: 26rem;
+  display: grid;
+  align-content: start;
+  gap: 0.85rem;
   padding: 1.25rem;
 }
 
-.project-card span {
+.project-media {
+  height: 8.4rem;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--ink);
+}
+
+.project-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.08) contrast(1.04);
+  opacity: 0.88;
+  transform: scale(1.05);
+}
+
+.project-media-network img {
+  object-position: 18% 50%;
+}
+
+.project-media-cctv img {
+  object-position: 52% 50%;
+}
+
+.project-media-system img {
+  object-position: 82% 50%;
+}
+
+.project-number {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 2.4rem;
   height: 2.4rem;
-  margin-bottom: 1rem;
   border-radius: var(--radius);
   background: var(--surface-strong);
   color: var(--teal);
   font-weight: 900;
+}
+
+.project-details {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.project-details p {
+  margin: 0;
+}
+
+.project-details strong {
+  color: var(--ink);
+}
+
+.project-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.2rem;
+}
+
+.project-tools span {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-strong);
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-weight: 800;
+  padding: 0.35rem 0.55rem;
 }
 
 .filter-bar {
@@ -1155,6 +1208,10 @@ h1 {
 
   .skill-meter {
     grid-template-columns: 1fr;
+  }
+
+  .skill-meter em {
+    justify-self: start;
   }
 
   .timeline-item {
