@@ -8,12 +8,12 @@ const printButton = document.querySelector("#print-page");
 const form = document.querySelector("#contact-form");
 const formStatus = document.querySelector("#form-status");
 
-const savedTheme = localStorage.getItem("kay-theme");
+const savedTheme = localStorage.getItem("ka-theme");
 const preferredTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 
 function setTheme(theme) {
   root.dataset.theme = theme;
-  localStorage.setItem("kay-theme", theme);
+  localStorage.setItem("ka-theme", theme);
 }
 
 setTheme(savedTheme || preferredTheme);
@@ -125,7 +125,7 @@ if (form && formStatus) {
 
     const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
     const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
-    formStatus.textContent = "Opening your email app...";
+    formStatus.textContent = "Opening your email app. If it does not open, use the direct email link above.";
     window.location.href = `mailto:pasha3.11.1990@gmail.com?subject=${subject}&body=${body}`;
   });
 }
