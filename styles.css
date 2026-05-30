@@ -245,6 +245,11 @@ button {
   stroke-linejoin: round;
 }
 
+.button svg.brand-icon {
+  fill: currentColor;
+  stroke: none;
+}
+
 .theme-toggle {
   position: relative;
 }
@@ -469,6 +474,7 @@ h1 {
 }
 
 .section {
+  scroll-margin-top: calc(var(--header) + 1rem);
   padding: 5.5rem 0;
 }
 
@@ -711,7 +717,7 @@ h1 {
 }
 
 .project-media {
-  height: 8.4rem;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: var(--radius);
   background: var(--ink);
@@ -1133,10 +1139,6 @@ h1 {
     width: 100%;
     padding-left: 0.7rem;
     padding-right: 0.7rem;
-  }
-
-  .hero-actions .button-ghost {
-    grid-column: 1 / -1;
   }
 
   .hero-facts {
