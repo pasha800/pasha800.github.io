@@ -22,6 +22,21 @@ if (year) {
   year.textContent = new Date().getFullYear();
 }
 
+window.addEventListener("load", () => {
+  if (!window.location.hash) return;
+  const target = document.getElementById(window.location.hash.slice(1));
+  if (target) {
+    const headerOffset = document.querySelector(".site-header")?.offsetHeight || 0;
+    const top = target.getBoundingClientRect().top + window.scrollY - headerOffset - 12;
+    const previousScrollBehavior = root.style.scrollBehavior;
+
+    root.style.scrollBehavior = "auto";
+    window.scrollTo(0, Math.max(top, 0));
+    root.style.scrollBehavior = previousScrollBehavior;
+    updateProgress();
+  }
+});
+
 function updateProgress() {
   if (!progress) return;
   const scrollTop = window.scrollY || document.documentElement.scrollTop;
