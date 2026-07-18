@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ckb" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>داگرتنی فایلی JSON</title>
+  <style>
+    body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:#f6f7f9;color:#111;margin:0;display:grid;place-items:center;min-height:100vh;padding:24px}
+    main{max-width:640px;background:#fff;border:1px solid #e3e6eb;border-radius:18px;padding:28px;box-shadow:0 12px 40px rgba(0,0,0,.08);text-align:center}
+    button{border:0;border-radius:12px;padding:14px 22px;font-size:17px;font-weight:700;cursor:pointer;background:#0d6b4d;color:#fff}
+    p{line-height:1.8}
+    .small{font-size:13px;color:#666;word-break:break-all}
+  </style>
+</head>
+<body>
+<main>
+  <h1>فایلی JSON ئامادەیە</h1>
+  <p id="status">داگرتن بە شێوەی خۆکار دەست پێ دەکات…</p>
+  <button id="downloadBtn" type="button">داگرتنی فایل</button>
+  <p class="small">majmuat_rasael_masael_fatawa_quran_centered_ckb_v2.1.json</p>
+</main>
+<script>
+(() => {
+  const sourceUrl = 'https://raw.githubusercontent.com/pasha800/pashaai/generated-quran-data-20260718/generated/majmuat_rasael_masael_fatawa_quran_centered_ckb_v2.1.json';
+  const fileName = 'majmuat_rasael_masael_fatawa_quran_centered_ckb_v2.1.json';
+  const status = document.getElementById('status');
+  const button = document.getElementById('downloadBtn');
+
+  async function downloadFile() {
+    button.disabled = true;
+    status.textContent = 'خەریکی ئامادەکردنی فایلەکەیە…';
+    try {
+      const response = await fetch(sourceUrl, {cache: 'no-store'});
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+      const blob = await response.blob();
+      const blobUrl = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = blobUrl;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(blobUrl), 10000);
+      status.textContent = 'داگرتن دەستی پێکرد. ئەگەر دەستی پێنەکرد، دووبارە کلیک بکە.';
+    } catch (error) {
+      status.textContent = 'داگرتنی خۆکار سەرکەوتوو نەبوو؛ دووبارە کلیک بکە.';
+      console.error(error);
+    } finally {
+      button.disabled = false;
+    }
+  }
+
+  button.addEventListener('click', downloadFile);
+  window.addEventListener('load', () => setTimeout(downloadFile, 350), {once: true});
+})();
+</script>
+</body>
+</html>
